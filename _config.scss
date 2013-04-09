@@ -1,0 +1,65 @@
+// =========================================================================
+// Answer these few questions to create your grid according to your needs
+// =========================================================================
+
+
+// Do you want your layout with a FIXED width or FLUID?
+// =========================================================================
+$layout: fix; // $layout: fix; or $layout: fluid;
+
+
+// Please provide some SIZES
+// =========================================================================
+$container: 960px; // %, em or px, for fluid layouts $container: 100%;
+$gutter: 20px; // %, em or px
+$min-width: null; // only for fluid layouts
+$max-width: null; // only for fluid layouts
+
+// That means it will generate widths until sixths (so you can use .g-5of6 for example),
+// you can choose how many sizes to generate
+$proportions-limit: 6;
+
+
+// Do you want to use gridney with SEMANTIC classes OR with EXPLICIT classes?
+//
+// You can use explicit classes:
+// - .grid or .g
+// - .g-col
+// - .g-1of2
+// - ...
+//
+// Or use it semantically in your scss file:
+// - .container { @include grid(); ... }
+// - .main { @include gridney-column(2of3); ... }
+// - aside { @include gridney-column(1of3); ... }
+// =========================================================================
+$explicit: true;
+
+
+// Do you want a RESPONSIVE grid?
+// This is to avoid generating too much css if you don't
+// need responsive helpers
+// =========================================================================
+$responsive: true;
+
+// Here select only the breakpoints you need to not generate unused css
+// the table of mediaqueries is in _mediaqueries.scss
+// =========================================================================
+
+// List of available breakpoints (here the table):
+// mobile (m)
+// tablet (t)
+// ...
+
+$breakpoints-list: $mobile $tablet;
+$breakpoints-list-shortcuts: $mobile-shortcut $tablet-shortcut;
+$breakpoints-list-mq: $mobile-mq $tablet-mq;
+
+// better
+//$breakpoints-list: ($mobile $mobile-shortcut $mobile-mq) ($tablet $tablet-shortcut $tablet-mq)
+
+// even better ($mobile and $tablet are lists of name,shorcut and mediaquery)
+// $breakpoints-list: $mobile $tablet;
+
+// even even better (but I don't know if possible)
+//$breakpoints-list: mobile tablet;

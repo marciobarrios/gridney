@@ -1,0 +1,26 @@
+// If your grid is RESPONSIVE you need to choose some BREAKPOINTS, Gridney
+// provides you some predefined breakpoints but you can add as more as you
+// need, fill this table to easily create your mediaqueries definitions
+// =========================================================================
+
+// ------------------------------------------------------------------------------------------
+// Breakpoint name, shortcut and mediaquery     | min-width             | max-width
+// ------------------------------------------------------------------------------------------
+   $mobile: mobile;                                                       $mobile-max: 480px;
+   $mobile-shortcut: m;
+
+   $tablet: tablet;                               $tablet-min: 481px;     $tablet-max: 720px;
+   $tablet-shortcut: t;
+
+   $mobile-up: mobile-up;
+   $mobile-up-shortcut: m-up;
+
+   // custom breakpoints
+   $breakpoint-1: breakpoint-1;
+   $breakpoint-1-shortcut: b1;
+
+
+// Mediaqueries based on the above table
+// -------------------------------------------------------------------------------------------
+$mobile-mq: "(max-width:#{$mobile-max})";
+$tablet-mq: "(min-width: #{$tablet-min}) and (max-width: #{$tablet-max})";

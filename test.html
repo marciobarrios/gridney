@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Gridney grid</title>
+    <link rel="stylesheet" href="gridney.css">
+
+    <style>
+      /*.container { width: 960px; margin: 0 auto; }*/
+      .g { margin: 0 auto; }
+      .g > * { position: relative; height: 50px; background: #ee796f; margin-bottom: 20px; }
+      .g > *:after { content: ""; position: absolute; top: 0; right: 0; bottom: 0; width: 1px; background: #fff; }
+    </style>
+  </head>
+  <body>
+
+    <div class="g">
+      <div class="g-col g-all"></div>
+
+      <div class="g-col g-1of2 g-all--mobile"></div>
+      <div class="g-col g-1of2 m-hide"></div>
+      <div class="g-col g-1of2"></div>
+      <div class="g-col g-1of2"></div>
+
+      <div class="g-col g-1of3" data-g-desktop="size-1of2" data-g-mobile="size-all">
+
+      </div>
+      <div class="g-col g-1of3" data-g-desktop="size-1of2" data-g-except-mobile="hide"></div>
+      <div class="g-col g-1of3" data-g-desktop="size-1of2" data-g-except-mobile="hide"></div>
+    </div>
+
+  </body>
+</html>

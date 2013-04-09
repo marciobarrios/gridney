@@ -1,0 +1,87 @@
+// function to calculate the width of each column
+// respect of the total columns
+@function fraction($size: $column of $columns) {
+  $column: nth($size, 1);
+  $columns: nth($size, 3);
+
+  @return $column/$columns * 100%;
+}
+
+// Check if a list contains a value
+@function contains($list, $value) {
+  @if type-of($list) == list { @return not not index($list, $value); }
+  @else { @return $list == $value; }
+}
+
+// This is to emulate a key/value list
+// Given 2 lists, search a value for an item based on the position
+@function getValue($list-key, $list-val, $item) {
+    $n1: index($list-key, $item);
+    $n2: index($list-val, $item);
+
+    @return nth($list-val, $n1);
+
+    // @if($n1) {
+    //     @return nth($list-val, $n1);
+    // } @else {
+    //     @return nth($list-key, $n2);
+    // }
+}
+
+// Find the greatest common factor of two integers
+@function gcf($a, $b) {
+  @if $b == 0 { @return $a; }
+  @else { @return gcf($b, $a % $b) }
+}
+
+// Generate mediaquery declaration for a given breakpoint
+@mixin mediaquery($i) {
+  $mq: nth($breakpoints-list-mq, $i);
+
+  @media only screen and #{$mq} { @content; }
+}
+
+// col size generator
+@mixin gridney-column($size: $column of $columns) {
+  @extend %col;
+  width: fraction($column of $columns);
+}
+
+// Widths generator
+@mixin build-sizes($n, $media: none) {
+
+  @for $i from 1 through $n {
+    @for $j from 1 through $i {
+      // @if $i == 1 and $j == 1 {
+      //   .g-all { width: fraction($j of $i); }
+      // }
+      // @if $i == 1 and $j == 2 {
+      //   .g-half { width: fraction($j of $i); }
+      // }
+
+      // Generate sizes for current media and it shortcut
+      @if contains($breakpoints-list, $media) {
+        $index-media: index($breakpoints-list, $media);
+        $media-shortcut: nth($breakpoints-list-shortcuts, $index-media);
+
+        .g-#{$j}of#{$i}--#{$media},
+        .g-#{$j}of#{$i}--#{$media-shortcut} {
+          width: fraction($j of $i);
+        }
+      }
+      @else {
+        .g-#{$j}of#{$i} { width: fraction($j of $i); }
+      }
+    }
+  }
+
+}
+
+// Generates all the sizes and mediaqueries
+@mixin build-responsive() {
+  @for $i from 1 through length($breakpoints-list) {
+    @include mediaquery($i) {
+      @include build-sizes($proportions-limit, nth($breakpoints-list, $i));
+    }
+  }
+}

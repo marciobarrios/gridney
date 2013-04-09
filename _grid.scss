@@ -1,0 +1,39 @@
+// =========================================================================
+// Grid skeleton
+// =========================================================================
+%grid {
+  letter-spacing: -.31em; // webkit: collapse white-space between units
+  word-spacing: -.43em\0; // IE9 + Opera
+  word-spacing: -.43em\9; // IE9
+
+  // we don't need rows, only a grid container
+  width: $container;
+
+  // min/max width for fluid grids
+  @if $min-width { min-width: $min-width; }
+  @if $max-width { max-width: $max-width; }
+
+  // *letter-spacing: normal;
+  // *word-spacing: -.43em;  // IE 6/7 (IE7 sees the previous rule)
+
+  &, x:moz-any-link {
+    word-spacing: -.43em; // for gecko
+  }
+}
+
+%col {
+  // inline-block instead of float to better align units
+  display: inline-block;
+  vertical-align: top;
+
+  // reset
+  letter-spacing: normal;
+  white-space: normal;
+
+  // box model = width + padding + border (IE9+)
+  box-sizing: border-box;
+
+  // spaces between units, padding to take advantage of
+  // border-box box sizing
+  padding-left: $gutter;
+}
