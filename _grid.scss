@@ -45,10 +45,9 @@
   .g-col    { @extend %col; }
 
   @if $responsive == true {
-    @include build-responsive();
-    @include build-sizes($proportions-limit);
+    @include build-responsive-sizes();
   }
   @else {
-    @include build-sizes($proportions-limit);
+    @include build-sizes();
   }
 }

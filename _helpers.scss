@@ -1,5 +1,5 @@
 // =========================================================================
-// All the functions/mixins used by gridney
+// Functions/mixins used by gridney
 // =========================================================================
 
 // function to calculate the width of each column
@@ -72,7 +72,7 @@
 
 // Widths generator
 // =========================================================================
-@mixin build-sizes($n, $breakpoint-name: null) {
+@mixin build-sizes($breakpoint-name: null) {
 
   $breakpoint-shortcut: null;
 
@@ -86,7 +86,7 @@
   }
 
   // generate all the classes (.g-?of?, .g-?of?--breakpoint...)
-  @for $i from 1 through $n {
+  @for $i from 1 through $proportions-limit {
     @for $j from 1 through $i {
 
       // the part of the selector that defines the proportion
@@ -142,11 +142,12 @@
 
 // Generates all the sizes and mediaqueries
 // =========================================================================
-@mixin build-responsive() {
+@mixin build-responsive-sizes() {
   @for $i from 1 through length($breakpoints) {
     $breakpoint-prop: nth($breakpoints, $i); // positions: name, shortcut and mediaquery
     @include mediaquery($i) {
-      @include build-sizes($proportions-limit, nth($breakpoint-prop, 1));
+      @include build-sizes(nth($breakpoint-prop, 1));
     }
   }
+  @include build-sizes();
 }
