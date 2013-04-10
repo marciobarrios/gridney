@@ -5,7 +5,7 @@
 
 // Do you want your layout with a FIXED width or FLUID?
 // =========================================================================
-$layout: fix; // $layout: fix; or $layout: fluid;
+//$layout: fix; // $layout: fix; or $layout: fluid;
 
 
 // Please provide some SIZES
@@ -42,24 +42,15 @@ $explicit: true;
 // =========================================================================
 $responsive: true;
 
-// Here select only the breakpoints you need to not generate unused css
-// the table of mediaqueries is in _mediaqueries.scss
-// =========================================================================
 
-// List of available breakpoints (here the table):
-// mobile (m)
-// tablet (t)
+// If your grid is RESPONSIVE you need to choose some BREAKPOINTS, Gridney
+// provides you some predefined breakpoints but you can add as more as you
+// need (mediaqueries definitions are in _mediaqueries.scss)
+$breakpoints: $mobile $tablet;
+
+// ----------------------------------------------------
+// Breakpoint name  | shortcut | min-width | max-width
+// ----------------------------------------------------
+// mobile             m          480px
+// tablet             t          481px       720px
 // ...
-
-$breakpoints-list: $mobile $tablet;
-$breakpoints-list-shortcuts: $mobile-shortcut $tablet-shortcut;
-$breakpoints-list-mq: $mobile-mq $tablet-mq;
-
-// better
-//$breakpoints-list: ($mobile $mobile-shortcut $mobile-mq) ($tablet $tablet-shortcut $tablet-mq)
-
-// even better ($mobile and $tablet are lists of name,shorcut and mediaquery)
-// $breakpoints-list: $mobile $tablet;
-
-// even even better (but I don't know if possible)
-//$breakpoints-list: mobile tablet;

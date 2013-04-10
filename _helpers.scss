@@ -1,13 +1,19 @@
+// =========================================================================
+// All the functions/mixins used by gridney
+// =========================================================================
+
 // function to calculate the width of each column
 // respect of the total columns
+// =========================================================================
 @function fraction($size: $column of $columns) {
-  $column: nth($size, 1);
+  $column:  nth($size, 1);
   $columns: nth($size, 3);
 
   @return $column/$columns * 100%;
 }
 
 // Check if a list contains a value
+// =========================================================================
 @function contains($list, $value) {
   @if type-of($list) == list { @return not not index($list, $value); }
   @else { @return $list == $value; }
@@ -15,6 +21,7 @@
 
 // This is to emulate a key/value list
 // Given 2 lists, search a value for an item based on the position
+// =========================================================================
 @function getValue($list-key, $list-val, $item) {
     $n1: index($list-key, $item);
     $n2: index($list-val, $item);
@@ -29,48 +36,104 @@
 }
 
 // Find the greatest common factor of two integers
+// =========================================================================
 @function gcf($a, $b) {
   @if $b == 0 { @return $a; }
   @else { @return gcf($b, $a % $b) }
 }
 
 // Generate mediaquery declaration for a given breakpoint
+// =========================================================================
 @mixin mediaquery($i) {
-  $mq: nth($breakpoints-list-mq, $i);
+
+  $breakpoint-prop: nth($breakpoints, $i);
+  $mq: null;
+
+  @if length($breakpoint-prop) == 2 { // without shortcut
+    $mq: nth($breakpoint-prop, 2);
+  }
+  @else if length($breakpoint-prop) == 3 { // with shortcut
+    $mq: nth($breakpoint-prop, 3);
+  }
 
   @media only screen and #{$mq} { @content; }
+
 }
 
 // col size generator
+// =========================================================================
 @mixin gridney-column($size: $column of $columns) {
+  $column:  nth($size, 1);
+  $columns: nth($size, 3);
+
   @extend %col;
   width: fraction($column of $columns);
 }
 
 // Widths generator
-@mixin build-sizes($n, $media: none) {
+// =========================================================================
+@mixin build-sizes($n, $breakpoint-name: null) {
 
+  $breakpoint-shortcut: null;
+
+  // Find shortcut name of this breakpoint (if exists),
+  // the positions of every breakpoint properties:
+  // 1 -> name, 2 -> shortcut, 3 -> mediaquery
+  @each $l in $breakpoints {
+    @if length($l) == 3 and nth($l, 1) == $breakpoint-name {
+      $breakpoint-shortcut: nth($l, 2);
+    }
+  }
+
+  // generate all the classes (.g-?of?, .g-?of?--breakpoint...)
   @for $i from 1 through $n {
     @for $j from 1 through $i {
-      // @if $i == 1 and $j == 1 {
-      //   .g-all { width: fraction($j of $i); }
-      // }
-      // @if $i == 1 and $j == 2 {
-      //   .g-half { width: fraction($j of $i); }
-      // }
+
+      // the part of the selector that defines the proportion
+      $selector-base: ".g-#{$j}of#{$i}";
 
       // Generate sizes for current media and it shortcut
-      @if contains($breakpoints-list, $media) {
-        $index-media: index($breakpoints-list, $media);
-        $media-shortcut: nth($breakpoints-list-shortcuts, $index-media);
+      @if $breakpoint-name { // sizes inside mediaqueries
 
-        .g-#{$j}of#{$i}--#{$media},
-        .g-#{$j}of#{$i}--#{$media-shortcut} {
-          width: fraction($j of $i);
+        // generate the entire selector
+        $selector: "#{$selector-base}--#{$breakpoint-name}";
+
+        #{$selector} { width: fraction($j of $i); }
+
+        // if there is shortchut, we generate it
+        @if $breakpoint-shortcut {
+          #{$selector-base}--#{$breakpoint-shortcut} { @extend #{$selector}; }
+        }
+
+        // 2 more readable sizes (.g-all--breakpoint and .g-half--breakpoint)
+        @if $i == 1 and $j == 1 {
+          .g-all--#{$breakpoint-name} { @extend #{$selector}; }
+          @if $breakpoint-shortcut {
+            .g-all--#{$breakpoint-shortcut} { @extend #{$selector}; }
+          }
+        }
+        @if $j == 1 and $i == 2 {
+          .g-half--#{$breakpoint-name} { @extend #{$selector}; }
+          @if $breakpoint-shortcut {
+            .g-half--#{$breakpoint-shortcut} { @extend #{$selector}; }
+          }
         }
       }
-      @else {
-        .g-#{$j}of#{$i} { width: fraction($j of $i); }
+      @else { // generic sizes
+
+        // generate the entire selector, in this only the proportion
+        $selector: $selector-base;
+
+        #{$selector} { width: fraction($j of $i); }
+
+        // 2 more readable sizes (.g-all and .g-half)
+        @if $i == 1 and $j == 1 {
+          .g-all { @extend #{$selector}; }
+        }
+        @if $j == 1 and $i == 2 {
+          .g-half { @extend #{$selector}; }
+        }
+
       }
     }
   }
@@ -78,10 +141,12 @@
 }
 
 // Generates all the sizes and mediaqueries
+// =========================================================================
 @mixin build-responsive() {
-  @for $i from 1 through length($breakpoints-list) {
+  @for $i from 1 through length($breakpoints) {
+    $breakpoint-prop: nth($breakpoints, $i); // positions: name, shortcut and mediaquery
     @include mediaquery($i) {
-      @include build-sizes($proportions-limit, nth($breakpoints-list, $i));
+      @include build-sizes($proportions-limit, nth($breakpoint-prop, 1));
     }
   }
 }

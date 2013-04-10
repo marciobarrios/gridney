@@ -10,7 +10,7 @@ You define what you want and Gridney does the hard work. Three simple steps to s
 
 @todo:
 - nested grids
-- extend 2 of 4 of 1 of 2
+- extend 2 of 4 from 1 of 2
 - add to .g-6of6 -> .g-all
 - add to .g-1of2 -> .g-half
 
@@ -20,6 +20,7 @@ Keys:
 - Every measure in px, em or % (gutter, width...)
 - Responsive helpers
 - Use it with SCSS or with plain CSS
+- Exhaustive control of the generated CSS (~ Xkb)
 
 ## Config
 You need to answer some simple questions in _config.scss to configure your grid system.
