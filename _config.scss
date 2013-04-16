@@ -2,25 +2,25 @@
 // Answer these few questions to create your grid according to your needs
 // =========================================================================
 
-
 // Do you want your layout with a FIXED width or FLUID?
 // =========================================================================
 //$layout: fix; // $layout: fix; or $layout: fluid;
 
 
-// Please provide some SIZES
+// Define layout and columns WIDTHS
 // =========================================================================
 $container: 960px; // %, em or px, for fluid layouts $container: 100%;
 $gutter: 20px; // %, em or px
 $min-width: null; // only for fluid layouts
 $max-width: null; // only for fluid layouts
 
-// That means it will generate widths until sixths (so you can use .g-5of6 for example),
+// That means it will generate widths until sixths (so you can use .g-?of6 for example),
 // you can choose how many sizes to generate
 $proportions-limit: 6;
 
 
 // Do you want to use gridney with SEMANTIC classes OR with EXPLICIT classes?
+// =========================================================================
 //
 // You can use explicit classes:
 // - .grid or .g
@@ -31,26 +31,61 @@ $proportions-limit: 6;
 // Or use it semantically in your scss file:
 // - .container { @include grid(); ... }
 // - .main { @include gridney-column(2of3); ... }
-// - aside { @include gridney-column(1of3); ... }
-// =========================================================================
+// - ...
 $explicit: true;
 
 
-// Do you want a RESPONSIVE grid?
+// Do you need a RESPONSIVE grid?
 // This is to avoid generating too much css if you don't
 // need responsive helpers
 // =========================================================================
 $responsive: true;
 
-
 // If your grid is RESPONSIVE you need to choose some BREAKPOINTS, Gridney
 // provides you some predefined breakpoints but you can add as more as you
-// need (mediaqueries definitions are in _mediaqueries.scss)
+// need (write your mediaqueries definitions in _mediaqueries.scss)
+
+// Choose the media queries you need (from the table below or from your custom media queries)
 $breakpoints: $mobile $tablet;
 
-// ----------------------------------------------------
-// Breakpoint name  | shortcut | min-width | max-width
-// ----------------------------------------------------
-// mobile             m          480px
-// tablet             t          481px       720px
-// ...
+
+// ------------------------------------------------------------------------------------------------------------------
+// Breakpoint name         | shortcut | min-d?-w | max-d?-w | land. | port. | reti. | comments
+// ------------------------------------------------------------------------------------------------------------------
+// mf-small                | mfs      | 768px    |          |       |       |       | Mobile first helper
+// mf-medium               | mfm      | 1280px   |          |       |       |       | Mobile first helper
+// mf-large                | mfl      | 1440px   |          |       |       |       | Mobile first helper
+//-------------------------|----------|----------|----------|-------|-------|-------|--------------------------------
+// mobile                  | m        |          | 479px    |       |       |       |
+// tablet                  | t        | 768px    | 1024px   |       |       |       |
+// tablet-up               | tu       | 768px    |          |       |       |       | Tablet and bigger screens
+// tablet-down             | td       |          | 767px    |       |       |       | up to tablet
+// desktop-down            | dd       |          | 1023px   |       |       |       | up to desktop
+//-------------------------|----------|----------|----------|-------|-------|-------|--------------------------------
+// iphone                  | ip       | 320px    | 480px    |       |       |       | iPhones 2G. 3G, 4 and 4s
+// iphone-portrait         | ip-p     | 320px    | 480px    |       |   X   |       | iPhones 2G. 3G, 4 and 4s
+// iphone-landscape        | ip-l     | 320px    | 480px    |   X   |       |       | iPhones 2G. 3G, 4 and 4s
+// iphone-4                | ip4      | 320px    | 480px    |       |       |   X   | iPhones 4 and 4s
+// iphone-4-portrait       | ip4-p    | 320px    | 480px    |       |   X   |   X   | iPhones 4 and 4s
+// iphone-4-landscape      | ip4-l    | 320px    | 480px    |   X   |       |   X   | iPhones 4 and 4s
+// iphone-5                | ip5      | 320px    | 568px    |       |       |   X   | iPhones 5
+// iphone-5-portrait       | ip5-p    | 320px    | 568px    |       |   X   |   X   | iPhones 5
+// iphone-5-landscape      | ip5-l    | 320px    | 568px    |   X   |       |   X   | iPhones 5
+// ipad                    |          | 768px    | 1024px   |       |       |       | iPad
+// ipad-portrait           | ipad-p   | 768px    | 1024px   |       |   X   |       | iPad
+// ipad-landscape          | ipad-l   | 768px    | 1024px   |   X   |       |       | iPad
+// ipad-up                 |          | 768px    |          |       |       |       | iPad and bigger screens
+// ipad-down               |          |          | 767px    |       |       |       | up to iPad
+// ipad-noretina           | ipad-nor | 768px    | 1024px   |       |       |       | iPad 1/2 (no retina), iPad Mini
+// ipad-noretina-portrait  | ipad-nop | 768px    | 1024px   |       |   X   |       | iPad 1/2 (no retina), iPad Mini
+// ipad-noretina-landscape | ipad-not | 768px    | 1024px   |   X   |       |       | iPad 1/2 (no retina), iPad Mini
+// ipad-retina             | ipad-r   | 768px    | 1024px   |       |       |   X   | iPad Retina
+// ipad-retina-portrait    | ipad-rp  | 768px    | 1024px   |       |   X   |   X   | iPad Retina
+// ipad-retina-landscape   | ipad-rt  | 768px    | 1024px   |   X   |       |   X   | iPad Retina
+//-------------------------|----------|----------|----------|-------|-------|-------|--------------------------------
+// retina                  | r        |          |          |       |       |   X   | Generic retina devices
+// o-portrait              | o-p      |          |          |       |   X   |       | Generic portrait mode
+// o-landscape             | o-l      |          |          |   X   |       |       | Generic landscape mode
+
+
+// Note: In the table above min-d?-width/max-d?-width means the possibility of use of min-width or min-device-width depending of the mediquery

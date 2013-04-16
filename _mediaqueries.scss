@@ -1,21 +1,219 @@
 // =========================================================================
 // Mediaqueries definitions ready to use with gridney
 // =========================================================================
+
+// Common variables
+// =========================================================================
+
+// $small-screen : emCalc(768px);
+// $medium-screen: emCalc(1280px);
+// $large-screen : emCalc(1440px);
+
+$mobile-portrait : 320px;
+$mobile-landscape: 480px;
+$tablet-portrait : 768px;
+$tablet-landscape: 1024px;
+$medium          : 1280px;
+$large           : 1440px;
+
+$retina-ios       : "and (-webkit-min-device-pixel-ratio: 2)";
+$portrait         : "and (orientation : portrait)";
+$landscape        : "and (orientation : landscape)";
+
+// Media queries definitions
+// =========================================================================
+// Note: order convention -> name shortcut? mediaquery (shortcut is optional)
+
+// Mobile first approach ----------------------------
+
+// small screen
+$mf-small-name: mf-small;
+$mf-small-shortcut: mfs;
+$mf-small-mq: "(min-width: #{$tablet-portrait})";
+$mf-small: $mf-small-name $mf-small-shortcut $mf-small-mq;
+
+// medium screen
+$mf-medium-name: mf-medium;
+$mf-medium-shortcut: mfm;
+$mf-medium-mq: "(min-width: #{$medium})";
+$mf-medium: $mf-medium-name $mf-medium-shortcut $mf-medium-mq;
+
+// large screen
+$mf-large-name: mf-large;
+$mf-large-shortcut: mfl;
+$mf-large-mq: "(min-width: #{$large})";
+$mf-large: $mf-large-name $mf-large-shortcut $mf-large-mq;
+
+// Generic devices ----------------------------------
+
+// mobile (portrait and landscape)
 $mobile-name: mobile;
 $mobile-shortcut: m;
-$mobile-mq: "(max-width: 480px)";
-// Order Convention -> name shortcut? mediaquery (shortcut is optional)
+$mobile-mq: "(max-width: #{$mobile-landscape - 1})";
 $mobile: $mobile-name $mobile-shortcut $mobile-mq;
 
+// tablet (portrait and landscape)
 $tablet-name: tablet;
 $tablet-shortcut: t;
-$tablet-mq: "(min-width: 481px) and (max-width: 720px)";
-// Order Convention -> name shortcut? mediaquery (shortcut is optional)
+$tablet-mq: "(min-width: #{$tablet-portrait}) and (max-width: #{$tablet-landscape})";
 $tablet: $tablet-name $tablet-shortcut $tablet-mq;
 
-// Custom breakpoints
-$breakpoint-1-name: breakpoint-1;
-$breakpoint-1-shortcut: b1;
-$breakpoint-1-mq: "(min-width: 1200px)";
-// Order Convention -> name shortcut? mediaquery (shortcut is optional)
-$breakpoint-1: $breakpoint-1-name $breakpoint-1-shortcut $breakpoint-1-mq;
+// tablet and bigger
+$tablet-up: tablet-up;
+$tablet-up-shortcut: tu;
+$tablet-up-mq: "(min-width: #{$tablet-portrait})";
+$tablet-up: $tablet-up-name $tablet-up-shortcut $tablet-up-mq;
+
+// up to tablet
+$tablet-down-name: tablet-down;
+$tablet-down-shortcut: td;
+$tablet-down-mq: "(max-width: #{$tablet-portrait - 1})";
+$tablet-down: $tablet-down-name $tablet-down-mq;
+
+// up to desktop
+$desktop-down-name: desktop-down;
+$desktop-down-shortcut: dd;
+$deskdop-down-mq: "(max-width: #{$tablet-landscape - 1})";
+$desktop-down: $desktop-down-name $desktop-down-mq;
+
+// iOS devices --------------------------------------
+
+// iPhone 2G-4s
+$iphone-name: iphone;
+$iphone-shortcut: ip;
+$iphone-mq: "(min-device-width: #{$mobile-portrait}) and (max-device-width: $mobile-landscape)";
+$iphone: $iphone-name $iphone-shortcut $iphone-mq;
+
+// iPhone 2G-4s portrait
+$iphone-portrait-name: iphone-portrait;
+$iphone-portrait-shortcut: ip-p;
+$iphone-portrait-mq: "#{$iphone-mq} and and (orientation : portrait)";
+$iphone-portrait: $iphone-portrait-name $iphone-portrait-shortcut $iphone-portrait-mq;
+
+// iPhone 2G-4s landscape
+$iphone-landscape-name: iphone-landscape;
+$iphone-landscape-shortcut: ip-l;
+$iphone-landscape-mq: "#{$iphone-mq} and and (orientation : landscape)";
+$iphone-landscape: $iphone-landscape-name $iphone-landscape-shortcut $iphone-landscape-mq;
+
+// iPhone 4/4S (Retina)
+$iphone-4-name: iphone-4;
+$iphone-4-shortcut: ip4;
+$iphone-4-mq: "#{$iphone-mq} #{$retina-ios}";
+$iphone-4: $iphone-4-name $iphone-4-shortcut $iphone-4-mq;
+
+// iPhone 4/4S (Retina) in portrait
+$iphone-4-portrait-name: iphone-4-portrait;
+$iphone-4-portrait-shortcut: ip4-p;
+$iphone-4-portrait-mq: "#{$iphone-4-mq} #{$portrait}";
+$iphone-4-portrait: $iphone-4-portrait-name $iphone-4-portrait-shortcut $iphone-4-portrait-mq;
+
+// iPhone 4/4S (Retina) in landscape
+$iphone-4-landscape-name: iphone-4-landscape;
+$iphone-4-landscape-shortcut: ip4-l;
+$iphone-4-landscape-mq: "#{$iphone-4-mq} #{$landscape}";
+$iphone-4-landscape: $iphone-4-landscape-name $iphone-4-landscape-shortcut $iphone-4-landscape-mq;
+
+// iPhone 5
+$iphone-5-name: iphone-5;
+$iphone-5-shortcut: ip5;
+$iphone-5-mq: "(min-device-width: #{$mobile-portrait}) and (max-device-width: 568px) #{$retina-ios}";
+$iphone-5: $iphone-5-name $iphone-5-shortcut $iphone-5-mq;
+
+// iPhone 5 portrait
+$iphone-5-portrait-name: iphone-5-portrait;
+$iphone-5-portrait-shortcut: ip5-p;
+$iphone-5-portrait-mq: "#{$iphone-5-mq} #{$portrait}";
+$iphone-5-portrait: $iphone-5-portrait-name $iphone-5-portrait-shortcut $iphone-5-portrait-mq;
+
+// iPhone 5 landscape
+$iphone-5-landscape-name: iphone-5-landscape;
+$iphone-5-landscape-shortcut: ip5-l;
+$iphone-5-landscape-mq: "#{$iphone-5-mq} and (orientation : landscape)";
+$iphone-5-landscape: $iphone-5-landscape-name $iphone-5-landscape-shortcut $iphone-5-landscape-mq;
+
+// iPad
+$ipad-name: ipad;
+$ipad-mq: "(min-device-width: #{$tablet-portrait}) and (max-device-width: #{$tablet-landscape})";
+$ipad: $ipad-name $ipad-mq;
+
+// iPad portrait
+$ipad-portrait-name: ipad-portrait;
+$ipad-portrait-shortcut: ipad-p;
+$ipad-portrait-mq: "#{$ipad-mq} and (orientation: portrait)";
+$ipad-portrait: $ipad-portrait-name $ipad-portrait-shortcut $ipad-portrait-mq;
+
+// iPad landscape
+$ipad-landscape-name: ipad-portrait;
+$ipad-landscape-shortcut: ipad-p;
+$ipad-landscape-mq: "#{$ipad-mq} and (orientation: landscape)";
+$ipad-landscape: $ipad-landscape-name $ipad-landscape-shortcut $ipad-landscape-mq;
+
+// iPad and bigger
+$ipad-up-name: ipad-up;
+$ipad-up: $ipad-up-name $tablet-up-mq;
+
+// up to iPad
+$ipad-down-name: ipad-down;
+$ipad-down: $ipad-down-name $tablet-down-mq;
+
+// iPad 1 & 2 (No retina) & iPad Mini
+$ipad-noretina-name: ipad-no-retina;
+$ipad-noretina-shortcut: ipad-nor;
+$ipad-noretina-mq: "(min-device-width: #{$tablet-portrait}) and (max-device-width: #{$tablet-landscape}) and (-webkit-min-device-pixel-ratio: 1)"
+$ipad-noretina: $ipad-noretina-name $ipad-noretina-shortcut $ipad-noretina-mq;
+
+// iPad 1 & 2 and iPad Mini in portrait
+$ipad-noretina-portrait-name: ipad-no-retina-portrait;
+$ipad-noretina-portrait-shortcut: ipad-nop;
+$ipad-noretina-portrait-mq: "#{$ipad-noretina-mq} #{portrait}";
+$ipad-noretina-portrait: $ipad-noretina-portrait-name $ipad-noretina-portrait-shortcut $ipad-noretina-portrait-mq;
+
+// iPad 1 & 2 and iPad Mini in landscape
+$ipad-noretina-landscape-name: ipad-no-retina-landscape;
+$ipad-noretina-landscape-shortcut: ipad-nol;
+$ipad-noretina-landscape-mq: "#{$ipad-noretina-mq} #{landscape}";
+$ipad-noretina-landscape: $ipad-noretina-landscape-name $ipad-noretina-landscape-shortcut $ipad-noretina-landscape-mq;
+
+// iPad retina
+$ipad-retina-name: ipad-retina;
+$ipad-retina-shortcut: ipad-r;
+$ipad-retina-mq: "(min-device-width: #{$tablet-portrait}) and (max-device-width: #{$tablet-landscape}) and #{$retina-ios}"
+$ipad-retina: $ipad-retina-name $ipad-retina-shortcut $ipad-retina-mq;
+
+// iPad retina portrait
+$ipad-retina-portrait-name: ipad-retina-portrait;
+$ipad-retina-portrait-shortcut: ipad-rp;
+$ipad-retina-portrait-mq: "#{$ipad-retina-mq} #{portrait}"
+$ipad-retina-portrait: $ipad-retina-portrait-name $ipad-retina-portrait-shortcut $ipad-retina-portrait-mq;
+
+// iPad retina landscape
+$ipad-retina-landscape-name: ipad-retina-landscape;
+$ipad-retina-landscape-shortcut: ipad-rl;
+$ipad-retina-landscape-mq: "#{$ipad-retina-mq} #{landscape}"
+$ipad-retina-landscape: $ipad-retina-landscape-name $ipad-retina-landscape-shortcut $ipad-retina-landscape-mq;
+
+// Other --------------------------------------------
+
+// Retina displays
+$retina-name: retina;
+$retina-shortcut: r;
+$retina-mq: "(-moz-min-device-pixel-ratio: 2), #{$retina-ios}, only screen and (-o-min-device-pixel-ratio: 2/1), only screen and (min-device-pixel-ratio: 2)";
+$retina: $retina-name $retina-shortcut $retina-mq;
+
+// Non retina displays
+// $no-retina-name: no-retina;
+// $no-retina-shortcut: nor;
+// $no-retina-mq: $retina-mq: "(-moz-min-device-pixel-ratio: 1), only screen and (-webkit-min-device-pixel-ratio: 1), only screen and (-o-min-device-pixel-ratio: 1/1), only screen and (min-device-pixel-ratio: 1)";
+
+// Orientation portrait
+$o-portrait-name: o-portrait;
+$o-portrait-shortcut: o-p;
+$o-portrait-mq: "#{$portrait}"
+$o-portrait: $o-portrait-name $o-portrait-shortcut $o-portrait-mq;
+
+// Orientation portrait
+$o-landscape-name: o-landscape;
+$o-landscape-shortcut: o-l;
+$o-landscape-mq: "#{$landscape}"
+$o-landscape: $o-landscape-name $o-landscape-shortcut $o-landscape-mq;
