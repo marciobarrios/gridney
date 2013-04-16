@@ -9,7 +9,7 @@
   $column:  nth($size, 1);
   $columns: nth($size, 3);
 
-  @return $column/$columns * 100%;
+  @return $column/$columns * 100%; // percentage();
 }
 
 // Check if a list contains a value
@@ -19,6 +19,12 @@
   @else { @return $list == $value; }
 }
 
+// Convert px to ems
+// =========================================================================
+@function toEm($px) {
+  @return $px / 16 * 1em; //16 is the usual base
+}
+
 // This is to emulate a key/value list
 // Given 2 lists, search a value for an item based on the position
 // =========================================================================
@@ -26,13 +32,11 @@
     $n1: index($list-key, $item);
     $n2: index($list-val, $item);
 
-    @return nth($list-val, $n1);
-
-    // @if($n1) {
-    //     @return nth($list-val, $n1);
-    // } @else {
-    //     @return nth($list-key, $n2);
-    // }
+    @if($n1) {
+        @return nth($list-val, $n1);
+    } @else {
+        @return nth($list-key, $n2);
+    }
 }
 
 // Find the greatest common factor of two integers
@@ -78,10 +82,18 @@
 
   // Find shortcut name of this breakpoint (if exists),
   // the positions of every breakpoint properties:
-  // 1 -> name, 2 -> shortcut, 3 -> mediaquery
+  // 1 -> name, 2 -> shortcut?, 3 -> mediaquery
   @each $l in $breakpoints {
     @if length($l) == 3 and nth($l, 1) == $breakpoint-name {
       $breakpoint-shortcut: nth($l, 2);
+    }
+  }
+
+  // Generate the hide class
+  @if $breakpoint-name {
+    .hide-on-#{$breakpoint-name} { display: none; }
+    @if $breakpoint-shortcut {
+      .hide-on-#{$breakpoint-shortcut} { @extend .hide-on-#{$breakpoint-name}; }
     }
   }
 
@@ -98,6 +110,7 @@
         // generate the entire selector
         $selector: "#{$selector-base}--#{$breakpoint-name}";
 
+        // Generate the rule
         #{$selector} { width: fraction($j of $i); }
 
         // if there is shortchut, we generate it
@@ -124,6 +137,7 @@
         // generate the entire selector, in this only the proportion
         $selector: $selector-base;
 
+        // Generate the rule
         #{$selector} { width: fraction($j of $i); }
 
         // 2 more readable sizes (.g-all and .g-half)
@@ -150,4 +164,10 @@
     }
   }
   @include build-sizes();
+}
+
+// Generates all the offsets
+// =========================================================================
+@mixin build-offsets($where) { // $where: before or after
+
 }
