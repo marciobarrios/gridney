@@ -22,6 +22,9 @@
   }
 }
 
+// Centered grid
+%grid--center { @extend %grid; text-align: center; }
+
 %col {
   // inline-block instead of float to better align units
   display: inline-block;
@@ -31,7 +34,7 @@
   letter-spacing: normal;
   white-space: normal;
 
-  // box model = width + padding + border (IE9+)
+  // box model = width + padding + border (IE8+)
   box-sizing: border-box;
 
   // spaces between units, padding to take advantage of
@@ -42,6 +45,7 @@
 // explicit sizes for grids and media queries
 @if $explicit == true {
   .grid, .g { @extend %grid; }
+  .grid--center { @extend %grid--center; }
   .g-col    { @extend %col; }
 
   @if $responsive == true {
