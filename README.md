@@ -26,14 +26,14 @@ Gridney uses inline-block + border-box to provide these grid features:
 
 - Every .g-?of? must be placed without other presentational styles if you need to style it as a boxes (because it uses padding instead of margin taking advantages of border-box sizing model).
 
-# Installation
+## Installation
 
 First of all be sure you have installed at least **SASS 3.2+**
 
 Via command line
 
-  $ git clone https://github.com/hunab/gridney
-  $ cd gridney && sh compile.sh
+        $ git clone https://github.com/hunab/gridney
+        $ cd gridney && sh compile.sh
 
 Now you define what you need and Gridney does the hard work. Three simple steps to start enjoying Gridney:
 
