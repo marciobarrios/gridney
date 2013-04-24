@@ -32,8 +32,10 @@ First of all be sure you have installed at least **SASS 3.2+**
 
 Via command line
 
-        $ git clone https://github.com/hunab/gridney
-        $ cd gridney && sh compile.sh
+```
+$ git clone https://github.com/hunab/gridney
+$ cd gridney && sh compile.sh
+```
 
 Now you define what you need and Gridney does the hard work. Three simple steps to start enjoying Gridney:
 
