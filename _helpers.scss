@@ -89,7 +89,8 @@
     }
   }
 
-  // Generate the hide class
+  // Generate the "hide" classes
+  .hide { display: none; }
   @if $breakpoint-name {
     .hide-on-#{$breakpoint-name} { display: none; }
     @if $breakpoint-shortcut {
@@ -159,10 +160,15 @@
 @mixin build-responsive-sizes() {
   @for $i from 1 through length($breakpoints) {
     $breakpoint-prop: nth($breakpoints, $i); // positions: name, shortcut and mediaquery
+    $breakpoint-name: nth($breakpoint-prop, 1);
+
+    /* Breakpoint: #{$breakpoint-name} */
     @include mediaquery($i) {
-      @include build-sizes(nth($breakpoint-prop, 1));
+      @include build-sizes($breakpoint-name);
     }
   }
+
+  /* Default widths */
   @include build-sizes();
 }
 

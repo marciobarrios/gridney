@@ -45,7 +45,8 @@ $responsive: true;
 // provides you some predefined breakpoints but you can add as more as you
 // need (write your mediaqueries definitions in _mediaqueries.scss)
 
-// Choose the media queries you need (from the table below or from your custom media queries)
+// Choose the media queries you need adding before the name a $ symbol,
+// (choose from the table below or from your custom media queries)
 $breakpoints: $mobile $tablet;
 
 
@@ -56,8 +57,8 @@ $breakpoints: $mobile $tablet;
 // mf-medium               | mfm      | 1280px   |          |       |       |       | Mobile first helper
 // mf-large                | mfl      | 1440px   |          |       |       |       | Mobile first helper
 //-------------------------|----------|----------|----------|-------|-------|-------|--------------------------------
-// mobile                  | m        |          | 479px    |       |       |       |
-// tablet                  | t        | 768px    | 1024px   |       |       |       |
+// mobile                  | m        |          | 479px    |       |       |       | Up to typical mobile landscape
+// tablet                  | t        | 768px    | 1024px   |       |       |       | Typical tablet resolutions
 // tablet-up               | tu       | 768px    |          |       |       |       | Tablet and bigger screens
 // tablet-down             | td       |          | 767px    |       |       |       | up to tablet
 // desktop-down            | dd       |          | 1023px   |       |       |       | up to desktop

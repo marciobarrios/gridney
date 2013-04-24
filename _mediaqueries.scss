@@ -59,7 +59,7 @@ $tablet-mq: "(min-width: #{$tablet-portrait}) and (max-width: #{$tablet-landscap
 $tablet: $tablet-name $tablet-shortcut $tablet-mq;
 
 // tablet and bigger
-$tablet-up: tablet-up;
+$tablet-up-name: tablet-up;
 $tablet-up-shortcut: tu;
 $tablet-up-mq: "(min-width: #{$tablet-portrait})";
 $tablet-up: $tablet-up-name $tablet-up-shortcut $tablet-up-mq;
@@ -73,8 +73,8 @@ $tablet-down: $tablet-down-name $tablet-down-mq;
 // up to desktop
 $desktop-down-name: desktop-down;
 $desktop-down-shortcut: dd;
-$deskdop-down-mq: "(max-width: #{$tablet-landscape - 1})";
-$desktop-down: $desktop-down-name $desktop-down-mq;
+$desktop-down-mq: "(max-width: #{$tablet-landscape - 1})";
+$desktop-down: $desktop-down-name $desktop-down-shortcut $desktop-down-mq;
 
 // iOS devices --------------------------------------
 
@@ -160,7 +160,7 @@ $ipad-down: $ipad-down-name $tablet-down-mq;
 // iPad 1 & 2 (No retina) & iPad Mini
 $ipad-noretina-name: ipad-no-retina;
 $ipad-noretina-shortcut: ipad-nor;
-$ipad-noretina-mq: "(min-device-width: #{$tablet-portrait}) and (max-device-width: #{$tablet-landscape}) and (-webkit-min-device-pixel-ratio: 1)"
+$ipad-noretina-mq: "(min-device-width: #{$tablet-portrait}) and (max-device-width: #{$tablet-landscape}) and (-webkit-min-device-pixel-ratio: 1)";
 $ipad-noretina: $ipad-noretina-name $ipad-noretina-shortcut $ipad-noretina-mq;
 
 // iPad 1 & 2 and iPad Mini in portrait
@@ -178,19 +178,19 @@ $ipad-noretina-landscape: $ipad-noretina-landscape-name $ipad-noretina-landscape
 // iPad retina
 $ipad-retina-name: ipad-retina;
 $ipad-retina-shortcut: ipad-r;
-$ipad-retina-mq: "(min-device-width: #{$tablet-portrait}) and (max-device-width: #{$tablet-landscape}) and #{$retina-ios}"
+$ipad-retina-mq: "(min-device-width: #{$tablet-portrait}) and (max-device-width: #{$tablet-landscape}) and #{$retina-ios}";
 $ipad-retina: $ipad-retina-name $ipad-retina-shortcut $ipad-retina-mq;
 
 // iPad retina portrait
 $ipad-retina-portrait-name: ipad-retina-portrait;
 $ipad-retina-portrait-shortcut: ipad-rp;
-$ipad-retina-portrait-mq: "#{$ipad-retina-mq} #{portrait}"
+$ipad-retina-portrait-mq: "#{$ipad-retina-mq} #{portrait}";
 $ipad-retina-portrait: $ipad-retina-portrait-name $ipad-retina-portrait-shortcut $ipad-retina-portrait-mq;
 
 // iPad retina landscape
 $ipad-retina-landscape-name: ipad-retina-landscape;
 $ipad-retina-landscape-shortcut: ipad-rl;
-$ipad-retina-landscape-mq: "#{$ipad-retina-mq} #{landscape}"
+$ipad-retina-landscape-mq: "#{$ipad-retina-mq} #{landscape}";
 $ipad-retina-landscape: $ipad-retina-landscape-name $ipad-retina-landscape-shortcut $ipad-retina-landscape-mq;
 
 // Other --------------------------------------------
@@ -209,11 +209,11 @@ $retina: $retina-name $retina-shortcut $retina-mq;
 // Orientation portrait
 $o-portrait-name: o-portrait;
 $o-portrait-shortcut: o-p;
-$o-portrait-mq: "#{$portrait}"
+$o-portrait-mq: "#{$portrait}";
 $o-portrait: $o-portrait-name $o-portrait-shortcut $o-portrait-mq;
 
 // Orientation portrait
 $o-landscape-name: o-landscape;
 $o-landscape-shortcut: o-l;
-$o-landscape-mq: "#{$landscape}"
+$o-landscape-mq: "#{$landscape}";
 $o-landscape: $o-landscape-name $o-landscape-shortcut $o-landscape-mq;

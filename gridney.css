@@ -1,11 +1,36 @@
-.grid, .g {
+/**
+* Gridney framework
+* =====================================================
+*
+* Gridney is a flexible grid framework to help you build
+* your site easily for different devices
+*
+* Version: 0.1
+*
+* Github repository:
+* https://github.com/hunab/gridney.git
+*
+* Website:
+* http://...
+*
+* Built with passion by @marciobarrios
+* http://marciobarrios.com
+*
+* Free to use under the MIT license:
+* http://www.opensource.org/licenses/mit-license.php
+*/
+.grid--center, .grid, .g {
   letter-spacing: -0.31em;
   word-spacing: -0.43em \0;
   word-spacing: -0.43em \9;
   width: 960px;
 }
-.grid, .g, .grid x:moz-any-link, .g x:moz-any-link {
+.grid--center, .grid, .g, .grid--center x:moz-any-link, .grid x:moz-any-link, .g x:moz-any-link {
   word-spacing: -0.43em;
+}
+
+.grid--center {
+  text-align: center;
 }
 
 .g-col {
@@ -17,7 +42,16 @@
   padding-left: 20px;
 }
 
-@media only screen and (max-width: 480px) {
+/* Breakpoint: mobile */
+@media only screen and (max-width: 479px) {
+  .hide {
+    display: none;
+  }
+
+  .hide-on-mobile, .hide-on-m {
+    display: none;
+  }
+
   .g-1of1--mobile, .g-1of1--m, .g-all--mobile, .g-all--m {
     width: 100%;
   }
@@ -102,7 +136,16 @@
     width: 100%;
   }
 }
-@media only screen and (min-width: 481px) and (max-width: 720px) {
+/* Breakpoint: tablet */
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+  .hide {
+    display: none;
+  }
+
+  .hide-on-tablet, .hide-on-t {
+    display: none;
+  }
+
   .g-1of1--tablet, .g-1of1--t, .g-all--tablet, .g-all--t {
     width: 100%;
   }
@@ -187,6 +230,11 @@
     width: 100%;
   }
 }
+/* Default widths */
+.hide {
+  display: none;
+}
+
 .g-1of1, .g-all {
   width: 100%;
 }
