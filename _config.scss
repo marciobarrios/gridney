@@ -2,10 +2,6 @@
 // Answer these few questions to create your grid according to your needs
 // =========================================================================
 
-// Do you want your layout with a FIXED width or FLUID?
-// =========================================================================
-//$layout: fix; // $layout: fix; or $layout: fluid;
-
 
 // Define layout and columns WIDTHS
 // =========================================================================
@@ -89,4 +85,5 @@ $breakpoints: $mobile $tablet;
 // o-landscape             | o-l      |          |          |   X   |       |       | Generic landscape mode
 
 
-// Note: In the table above min-d?-width/max-d?-width means the possibility of use of min-width or min-device-width depending of the mediquery
+// Note: In the table above min-d?-width/max-d?-width means the possibility of use of min-width or min-device-width
+// depending of the media query
